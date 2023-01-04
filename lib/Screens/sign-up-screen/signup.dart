@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
 
@@ -23,42 +26,190 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               homeButton(context),
               const SizedBox(
-                
-                height: 70,
+                height: 30,
+              ),
+              Container(
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                ),
+                child: Image.asset(
+                  "assets/images/imqge6.png",
+                  height: 200,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Center(
+                  child: Text(
+                    "Welcome to smartpayy - Getting paid online just got better.  Sign up now to enjoy seamless transactions globally.",
+                    style: GoogleFonts.ptSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF2B1330).withOpacity(0.5),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 35,
+              ),
+              Container(
+                padding: EdgeInsets.zero,
+                child: Center(
+                  child: Text(
+                    "Sign up",
+                    style: GoogleFonts.ptSans(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF2B1330),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 40, right: 30),
+                child: Text(
+                  "First Name",
+                  style: GoogleFonts.ptSans(
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF2B1330),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: firstNameField(),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
+                padding: const EdgeInsets.only(left: 40, right: 30),
+                child: Text(
+                  "Last name",
+                  style: GoogleFonts.ptSans(
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF2B1330),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30),
                 child: lastNameField(),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
+                padding: const EdgeInsets.only(left: 40, right: 30),
+                child: Text(
+                  "Email address",
+                  style: GoogleFonts.ptSans(
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF2B1330),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30),
                 child: emailField(),
               ),
-              
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
+                padding: const EdgeInsets.only(left: 40, right: 30),
+                child: Text(
+                  "Username",
+                  style: GoogleFonts.ptSans(
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF2B1330),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30),
                 child: userNameField(),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
-                child: phoneNumberField()
+              const SizedBox(
+                height: 10,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
-                child: countryField()
+                padding: const EdgeInsets.only(left: 40, right: 30),
+                child: Text(
+                  "Phone Number",
+                  style: GoogleFonts.ptSans(
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF2B1330),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
-                child: emailField(),
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: phoneNumberField()),
+              const SizedBox(
+                height: 010,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
-                child: emailField(),
+                padding: const EdgeInsets.only(left: 40, right: 30),
+                child: Text(
+                  "Country",
+                  style: GoogleFonts.ptSans(
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF2B1330),
+                  ),
+                ),
               ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: countryField()),
+              const SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 2.5,
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(color: const Color(0xFF2B1330), width: 5),
+                      borderRadius: BorderRadius.circular(70)),
+                  child: Center(
+                      child: Text(
+                    "Sign up",
+                    style: GoogleFonts.ptSans(
+                        color: const Color(0xFF2B1330),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  )),
+                ),
+              ),
+              const SizedBox(
+                height: 100,
+              )
             ],
           ),
         ),

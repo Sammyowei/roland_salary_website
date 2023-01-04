@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
+import 'package:roland_salary_website/Screens/Login-Screen/login_page.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -189,29 +191,101 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(
                 height: 50,
               ),
+              signupButtonToDashboard(context),
+              const SizedBox(
+                height: 50,
+              ),
               Center(
                 child: Container(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width / 2.5,
-                  decoration: BoxDecoration(
-                      border:
-                          Border.all(color: const Color(0xFF2B1330), width: 5),
-                      borderRadius: BorderRadius.circular(70)),
-                  child: Center(
-                      child: Text(
-                    "Sign up",
+                    padding: const EdgeInsets.only(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Already a member?",
+                          style: GoogleFonts.ptSans(
+                            color: const Color(0xFF2B1330),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 3,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                              builder: (context) {
+                                return const LoginPage();
+                              },
+                            ), (route) => false);
+                          },
+                          child: Text(
+                            "Log in ",
+                            style: GoogleFonts.ptSans(
+                              color: const Color(0xFF2B1330),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(),
+                  child: Text(
+                    "© All right reserved 2022",
                     style: GoogleFonts.ptSans(
-                        color: const Color(0xFF2B1330),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  )),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black.withOpacity(0.5)),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
               const SizedBox(
-                height: 100,
+                height: 30,
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Center signupButtonToDashboard(BuildContext context) {
+    return Center(
+      child: GestureDetector(
+        onTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content:
+                  Text("Sign up successful, taking you to your dashboard!")));
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+            builder: (context) {
+              return const DashboardScreen();
+            },
+          ), (route) => false);
+        },
+        child: Container(
+          height: 40,
+          width: MediaQuery.of(context).size.width / 2.5,
+          decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFF2B1330), width: 5),
+              borderRadius: BorderRadius.circular(70)),
+          child: Center(
+              child: Text(
+            "Sign up",
+            style: GoogleFonts.ptSans(
+                color: const Color(0xFF2B1330),
+                fontSize: 20,
+                fontWeight: FontWeight.w600),
+          )),
         ),
       ),
     );

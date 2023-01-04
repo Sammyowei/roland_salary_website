@@ -304,7 +304,7 @@ and the fund arrive right away.""",
                     ),
                     Container(
                       padding: const EdgeInsets.only(left: 0, right: 0),
-                      height: 250,
+                      height: 230,
                       decoration: const BoxDecoration(
                           color: Color(0xFF2B1330),
                           borderRadius: BorderRadius.only(
@@ -322,7 +322,7 @@ and the fund arrive right away.""",
                               child: Text(
                                 "Smartpayy platform is at your service with it's user friendly features, secure infastructure and applications that makes a difference.",
                                 style: GoogleFonts.ptSans(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white54),
                                 textAlign: TextAlign.center,
@@ -339,7 +339,7 @@ and the fund arrive right away.""",
                               child: Text(
                                 "© All right reserved 2022",
                                 style: GoogleFonts.ptSans(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white54),
                                 textAlign: TextAlign.center,
@@ -357,7 +357,7 @@ and the fund arrive right away.""",
                               child: Text(
                                 "smartpayy- the easiest place to recieve funds online.",
                                 style: GoogleFonts.ptSans(
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white54,
                                 ),

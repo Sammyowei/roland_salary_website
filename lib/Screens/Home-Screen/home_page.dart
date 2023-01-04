@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:roland_salary_website/Screens/Login-Screen/login_page.dart';
+import 'package:roland_salary_website/Screens/sign-up-screen/signup.dart';
 import 'package:roland_salary_website/util/responsive_helper.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +26,8 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                   child: SingleChildScrollView(
                 controller: _scrollController,
+                physics: const AlwaysScrollableScrollPhysics(
+                    parent: ScrollPhysics(parent: ClampingScrollPhysics())),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -297,53 +300,74 @@ and the fund arrive right away.""",
                     ),
                     getStartedButton(context),
                     const SizedBox(
-                      height: 100,
+                      height: 50,
                     ),
-                    const Divider(
-                      color: Colors.deepPurple,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25, right: 25),
-                      child: Text(
-                        "Smarrtpayy platform is at your service with it's user friendly features, secure infastructure and applications that makes a difference.",
-                        style: GoogleFonts.ptSans(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF2B1330).withOpacity(0.6)),
-                        textAlign: TextAlign.center,
+                    Container(
+                      padding: const EdgeInsets.only(left: 0, right: 0),
+                      height: 250,
+                      decoration: const BoxDecoration(
+                          color: Color(0xFF2B1330),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30))),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 30,
+                            left: 3,
+                            right: 3,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 25, right: 25),
+                              child: Text(
+                                "Smartpayy platform is at your service with it's user friendly features, secure infastructure and applications that makes a difference.",
+                                style: GoogleFonts.ptSans(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white54),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 140,
+                            left: 3,
+                            right: 3,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 25, right: 25),
+                              child: Text(
+                                "© All right reserved 2022",
+                                style: GoogleFonts.ptSans(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white54),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 180,
+                            left: 3,
+                            right: 3,
+                            bottom: 0,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 25, right: 25),
+                              child: Text(
+                                "smartpayy- the easiest place to recieve funds online.",
+                                style: GoogleFonts.ptSans(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white54,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25, right: 25),
-                      child: Text(
-                        "© All right reserved 2022",
-                        style: GoogleFonts.ptSans(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF2B1330).withOpacity(0.8)),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25, right: 25),
-                      child: Text(
-                        "smartpayy- the easiest place to recieve funds online.",
-                        style: GoogleFonts.ptSans(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF2B1330).withOpacity(0.8)),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                    )
                   ],
                 ),
               ))
@@ -356,13 +380,26 @@ and the fund arrive right away.""",
 
   GestureDetector signUpButton(BuildContext context) {
     return GestureDetector(
+      onTap: () => Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const SignUpPage(),
+          ),
+          (route) => false),
       child: Container(
         height: 55,
         width: MediaQuery.of(context).size.width / 2.6,
         padding: EdgeInsets.zero,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: const Color(0xFF2B1330),
+          borderRadius: BorderRadius.circular(40),
+          border: Border.all(color: const Color(0xFF2B1330), width: 5),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF2B1330).withOpacity(0.1),
+              offset: const Offset(-2, 4),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
         ),
         child: Center(
           child: Text(
@@ -370,7 +407,7 @@ and the fund arrive right away.""",
             style: GoogleFonts.ptSans(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: const Color(0xFF2B1330),
             ),
           ),
         ),
@@ -380,19 +417,28 @@ and the fund arrive right away.""",
 
   GestureDetector getStartedButton(BuildContext context) {
     return GestureDetector(
+      onTap: () => Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const SignUpPage(),
+          ),
+          (route) => false),
       child: Container(
         height: 40,
         width: MediaQuery.of(context).size.width / 2.7,
         padding: EdgeInsets.zero,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: const Color(0xFF2B1330),
+          border: Border.all(color: const Color(0xFF2B1330), width: 5),
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.transparent,
         ),
         child: Center(
           child: Text(
             "Get started",
             style: GoogleFonts.ptSans(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xFF2B1330),
+            ),
           ),
         ),
       ),
@@ -439,6 +485,11 @@ and the fund arrive right away.""",
 
   GestureDetector registerButton() {
     return GestureDetector(
+      onTap: () => Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const SignUpPage(),
+          ),
+          (route) => false),
       child: Container(
         padding: const EdgeInsets.only(right: 15),
         child: const Text(

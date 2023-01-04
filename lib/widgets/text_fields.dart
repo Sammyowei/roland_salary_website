@@ -18,9 +18,9 @@ TextFormField emailField() {
 }
 
 TextFormField userNameField() {
-  final emailController = TextEditingController();
+  final userNameController = TextEditingController();
   return TextFormField(
-    controller: emailController,
+    controller: userNameController,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -28,16 +28,16 @@ TextFormField userNameField() {
             color: Color(0XFF2B1347),
           ),
         ),
-        hintText: "Email address",
+        hintText: "Username",
         alignLabelWithHint: true,
         fillColor: const Color(0xff2B1347)),
   );
 }
 
 TextFormField phoneNumberField() {
-  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   return TextFormField(
-    controller: emailController,
+    controller: passwordController,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -45,16 +45,16 @@ TextFormField phoneNumberField() {
             color: Color(0XFF2B1347),
           ),
         ),
-        hintText: "Email address",
+        hintText: "Phone number",
         alignLabelWithHint: true,
         fillColor: const Color(0xff2B1347)),
   );
 }
 
 TextFormField firstNameField() {
-  final emailController = TextEditingController();
+  final firstnameController = TextEditingController();
   return TextFormField(
-    controller: emailController,
+    controller: firstnameController,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -62,16 +62,16 @@ TextFormField firstNameField() {
             color: Color(0XFF2B1347),
           ),
         ),
-        hintText: "Email address",
+        hintText: "First name",
         alignLabelWithHint: true,
         fillColor: const Color(0xff2B1347)),
   );
 }
 
 TextFormField lastNameField() {
-  final emailController = TextEditingController();
+  final lastNameController = TextEditingController();
   return TextFormField(
-    controller: emailController,
+    controller: lastNameController,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -79,16 +79,16 @@ TextFormField lastNameField() {
             color: Color(0XFF2B1347),
           ),
         ),
-        hintText: "Email address",
+        hintText: "Last name",
         alignLabelWithHint: true,
         fillColor: const Color(0xff2B1347)),
   );
 }
 
 TextFormField passwordField() {
-  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   return TextFormField(
-    controller: emailController,
+    controller: passwordController,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -103,11 +103,35 @@ TextFormField passwordField() {
 }
 
 TextFormField countryField() {
-  final emailController = TextEditingController();
-  return TextFormField();
+  final countryController = TextEditingController();
+  return TextFormField(
+    controller: countryController,
+    decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(
+            color: Color(0XFF2B1347),
+          ),
+        ),
+        hintText: "Select country",
+        alignLabelWithHint: true,
+        fillColor: const Color(0xff2B1347)),
+  );
 }
 
 TextFormField countryCodeField() {
-  final emailController = TextEditingController();
-  return TextFormField();
+  final countryCode = TextEditingController();
+  return TextFormField(
+    controller: countryCode,
+    decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(
+            color: Color(0XFF2B1347),
+          ),
+        ),
+        hintText: "",
+        alignLabelWithHint: true,
+        fillColor: const Color(0xff2B1347)),
+  );
 }

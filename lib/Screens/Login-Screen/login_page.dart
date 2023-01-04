@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
+import 'package:roland_salary_website/Screens/sign-up-screen/signup.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,16 +12,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: const ScrollPhysics(parent: BouncingScrollPhysics()),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              homePageButton(context),
+              homeButton(context),
               const SizedBox(
                 height: 70,
               ),
@@ -147,21 +151,14 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         "Not a member?",
                         style: GoogleFonts.ptSans(
-                          color: Colors.black54,
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            color: Colors.black54,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(
                         width: 4,
                       ),
-                      GestureDetector(
-                        child: Text(
-                          "Create Account",
-                          style: GoogleFonts.ptSans(
-                              color: const Color(0xFF2B1347),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )
+                      createAccountButton()
                     ],
                   ),
                 ),
@@ -173,7 +170,24 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  GestureDetector homePageButton(BuildContext context) {
+  GestureDetector createAccountButton() {
+    return GestureDetector(
+      onTap: () => Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: ((context) => const SignUpPage()),
+          ),
+          (route) => false),
+      child: Text(
+        "Create Account",
+        style: GoogleFonts.ptSans(
+            color: const Color(0xFF2B1347),
+            fontSize: 16,
+            fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+
+  GestureDetector homeButton(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(

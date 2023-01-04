@@ -386,20 +386,12 @@ and the fund arrive right away.""",
           ),
           (route) => false),
       child: Container(
-        height: 55,
-        width: MediaQuery.of(context).size.width / 2.6,
+        height: 45,
+        width: MediaQuery.of(context).size.width / 2.5,
         padding: EdgeInsets.zero,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           border: Border.all(color: const Color(0xFF2B1330), width: 5),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF2B1330).withOpacity(0.1),
-              offset: const Offset(-2, 4),
-              blurRadius: 10,
-              spreadRadius: 2,
-            ),
-          ],
         ),
         child: Center(
           child: Text(
@@ -450,7 +442,7 @@ and the fund arrive right away.""",
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(color: Colors.black26, offset: Offset(0, 2), blurRadius: 6.0)
       ]),
-      padding: const EdgeInsets.only(left: 10, right: 10),
+      padding: const EdgeInsets.only(left: 10, right: 0),
       height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

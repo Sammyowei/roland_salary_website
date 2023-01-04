@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
 import 'package:roland_salary_website/Screens/sign-up-screen/signup.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
@@ -114,6 +115,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Center(
                 child: GestureDetector(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Log in successful")));
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                      builder: (context) {
+                        return const DashboardScreen();
+                      },
+                    ), (route) => false);
+                  },
                   child: Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width / 2.5,

@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 
+final emailController = TextEditingController();
+final passwordController = TextEditingController();
+final firstNameController = TextEditingController();
+final lastNameController = TextEditingController();
+final phoneNumberController = TextEditingController();
+final countryController = TextEditingController();
+final userNameController = TextEditingController();
+final confirmPasswordController = TextEditingController();
+
 TextFormField emailField() {
   final emailController = TextEditingController();
   return TextFormField(
@@ -18,7 +27,7 @@ TextFormField emailField() {
 }
 
 TextFormField userNameField() {
-  final userNameController = TextEditingController();
+  // final userNameController = TextEditingController();
   return TextFormField(
     controller: userNameController,
     decoration: InputDecoration(
@@ -35,7 +44,7 @@ TextFormField userNameField() {
 }
 
 TextFormField phoneNumberField() {
-  final passwordController = TextEditingController();
+  // final passwordController = TextEditingController();
   return TextFormField(
     controller: passwordController,
     decoration: InputDecoration(
@@ -52,9 +61,9 @@ TextFormField phoneNumberField() {
 }
 
 TextFormField firstNameField() {
-  final firstnameController = TextEditingController();
+  // final firstnameController = TextEditingController();
   return TextFormField(
-    controller: firstnameController,
+    controller: firstNameController,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -69,7 +78,7 @@ TextFormField firstNameField() {
 }
 
 TextFormField lastNameField() {
-  final lastNameController = TextEditingController();
+  // final lastNameController = TextEditingController();
   return TextFormField(
     controller: lastNameController,
     decoration: InputDecoration(
@@ -86,7 +95,7 @@ TextFormField lastNameField() {
 }
 
 TextFormField passwordField() {
-  final passwordController = TextEditingController();
+  // final passwordController = TextEditingController();
   return TextFormField(
     controller: passwordController,
     decoration: InputDecoration(
@@ -103,7 +112,7 @@ TextFormField passwordField() {
 }
 
 TextFormField countryField() {
-  final countryController = TextEditingController();
+  // final countryController = TextEditingController();
   return TextFormField(
     controller: countryController,
     decoration: InputDecoration(
@@ -119,10 +128,10 @@ TextFormField countryField() {
   );
 }
 
-TextFormField countryCodeField() {
-  final countryCode = TextEditingController();
+TextFormField confirmPasswordField() {
+  // final countryCode = TextEditingController();
   return TextFormField(
-    controller: countryCode,
+    controller: confirmPasswordController,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -130,7 +139,7 @@ TextFormField countryCodeField() {
             color: Color(0XFF2B1347),
           ),
         ),
-        hintText: "",
+        hintText: "Confirm password",
         alignLabelWithHint: true,
         fillColor: const Color(0xff2B1347)),
   );

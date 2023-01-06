@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "836355816283",
+    "project_id": "smartpayy",
+    "storage_bucket": "smartpayy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836355816283:android:1d47732a214a06537a387e",
+        "android_client_info": {
+          "package_name": "com.example.roland_salary_website"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836355816283-ga4dip1i42a9fc5eps48t9b1jrk5abfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8mYDA4NQJbANwAXZibrccFpWBnCAZw0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836355816283-ga4dip1i42a9fc5eps48t9b1jrk5abfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,9 +11,16 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  // final _salaryAmount = 0;
+  double salaryAmount = 90;
 
-  final _userName = "SammyOwei";
+  final _userName = "SammyOwei.";
+  @override
+  void initState() {
+    setState(() {
+      salaryAmount;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +38,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       endDrawer: Container(
         padding: EdgeInsets.zero,
-        child: const Drawer(),
+        child: const Drawer(
+          width: 200,
+        ),
       ),
       appBar: AppBar(
           foregroundColor: const Color(0xFF2B1330).withOpacity(0.7),
@@ -67,27 +78,126 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 style: GoogleFonts.ptSans(
                     fontSize: 19,
                     fontWeight: FontWeight.bold,
-                    color:  Colors.black.withOpacity(0.7)),
+                    color: Colors.black.withOpacity(0.7)),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0, top: 30),
+                padding: const EdgeInsets.only(left: 0, right: 0, top: 10),
                 child: Container(
-                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                  height: 170,
                   // color: Colors.red,
                   padding: EdgeInsets.zero,
                   decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(25),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          offset: const Offset(-2, 4),
-                          blurRadius: 2)
-                    ],
+                    color: const Color(0xFF2B1330),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Stack(children: const []),
+                  child: Stack(children: [
+                    Positioned(
+                      top: 30,
+                      left: 15,
+                      child: Text(
+                        "Wallet balance:",
+                        style: GoogleFonts.ptSans(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white.withOpacity(0.85),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 60,
+                      left: 15,
+                      right: 15,
+                      child: Text(
+                        "\$${salaryAmount.toInt().toStringAsFixed(2)}",
+                        style: GoogleFonts.ptSans(
+                          fontSize: 23.5,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white.withOpacity(0.85),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          height: 22,
+                          width: MediaQuery.of(context).size.width / 6.5,
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.55),
+                              borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(35),
+                                  topRight: Radius.circular(15))),
+                          padding: EdgeInsets.zero,
+                          child: Center(
+                            child: Text(
+                              "Tier 1",
+                              style: GoogleFonts.ptSans(
+                                  color: const Color(0xFF2B1330).withOpacity(1),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ))
+                  ]),
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                color: Colors.transparent,
+                height: 35,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF2B1330),
+                        borderRadius: BorderRadius.circular(8.5),
+                        boxShadow: [
+                          BoxShadow(
+                              color: const Color(0xFF2B1330).withOpacity(0.5),
+                              offset: const Offset(-2, 2),
+                              blurRadius: 1)
+                        ],
+                      ),
+                      child: Center(
+                          child: Text(
+                        "Add funds",
+                        style: GoogleFonts.ptSans(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white.withOpacity(0.89),
+                        ),
+                      )),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 2.8,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF2B1330),
+                        borderRadius: BorderRadius.circular(8.5),
+                        boxShadow: [
+                          BoxShadow(
+                              color: const Color(0xFF2B1330).withOpacity(0.5),
+                              offset: const Offset(2, 2),
+                              blurRadius: 1)
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Withdraw funds",
+                          style: GoogleFonts.ptSans(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white.withOpacity(0.89),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

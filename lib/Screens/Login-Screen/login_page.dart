@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
@@ -118,17 +120,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Center(
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (formKey.currentState!.validate()) {
-                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Log in successful")));
-                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                        builder: (context) {
-                          return const DashboardScreen();
-                        },
-                      ), (route) => false);
+                        try {
+                          signIn();
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text("Log in successful")));
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                            builder: (context) {
+                              return const DashboardScreen();
+                            },
+                          ), (route) => false);
+                        } catch (e) {
+                          log(e.toString());
+                        }
                       }
-                     
                     },
                     child: Container(
                       height: 50,

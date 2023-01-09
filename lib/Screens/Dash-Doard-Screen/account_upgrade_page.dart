@@ -1,6 +1,10 @@
+import 'dart:developer';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AccountUpgradePage extends StatefulWidget {
   const AccountUpgradePage({super.key});
@@ -252,28 +256,63 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  left: 70,
-                  right: 70,
+                  left: 65,
+                  right: 65,
                 ),
                 child: Center(
                   child: GestureDetector(
                     onTap: () {
-                      setState(() {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text(
-                                "Account upgrade pending.",
-                                style: GoogleFonts.ptSans(
-                                  fontWeight: FontWeight.bold
-                                ),
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(
+                              "Account upgrade pending.",
+                              style: GoogleFonts.ptSans(
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            content: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        "For account upgrade contact support on telegram. To contact support, ",
+                                    style: GoogleFonts.ptSans(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "Click Here.",
+                                    style: GoogleFonts.ptSans(
+                                      fontSize: 18,
+                                      color: const Color(0xFF2B1330)
+                                          .withOpacity(0.8),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () async {
+                                        try {
+                                          const supportLink =
+                                              "https://t.me/smartpayysupport/";
+                                          final url = Uri.parse(supportLink);
+                                      if (await canLaunchUrl(url)) {
+                                       await launchUrl(url) ;
+                                      } else{
+                                        log("Cannot open link");
+                                      }
+                                      
+                                        } catch (e) {
+                                          log(e.toString());
+                                        }
+                                      },
+                                  ),
+                                ],
                               ),
-                              content:Text("")
-                            );
-                          },
-                        );
-                      });
+                            ),
+                          );
+                        },
+                      );
                     },
                     child: Container(
                         height: 55,
@@ -300,4 +339,22 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
       ),
     );
   }
+}
+
+GestureDetector contactSupport() {
+  return GestureDetector(
+    onTap: () {
+      String supportTelegramLink = "https://t.me/smartpayysupport";
+      final url = Uri.parse(supportTelegramLink);
+      launchUrl(
+        url,
+      );
+    },
+    child: Text(
+      "Click here.",
+      style: GoogleFonts.ptSans(
+        color: const Color(0xff2b1330).withOpacity(0.78),
+      ),
+    ),
+  );
 }

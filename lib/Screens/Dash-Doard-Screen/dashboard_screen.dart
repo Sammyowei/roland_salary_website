@@ -11,8 +11,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  double salaryAmount = 90;
-
   @override
   void initState() {
     setState(() {

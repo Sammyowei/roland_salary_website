@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/account_upgrade_page.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/transaction_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -62,71 +65,134 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: Stack(
                 children: [
                   Positioned(
                     top: 20,
                     left: 10,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.zero,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.zero,
-                            child: const Icon(Icons.account_circle_outlined),
-                          ),
-                          Container(
-                            padding: EdgeInsets.zero,
-                            child: Center(
-                              child: Text(
-                                "Account settings",
-                                style: GoogleFonts.ptSans(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF2B1330),
+                    right: 10,
+                    child: GestureDetector(
+                      onTap: () {
+                        Scaffold.of(context).closeEndDrawer();
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.zero,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.zero,
+                              child: const Icon(Icons.home_rounded),
+                            ),
+                            Container(
+                              padding: EdgeInsets.zero,
+                              child: Center(
+                                child: Text(
+                                  "Home",
+                                  style: GoogleFonts.ptSans(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xFF2B1330),
+                                  ),
                                 ),
                               ),
                             ),
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
                     top: 60,
                     left: 10,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.zero,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.zero,
-                            child: const Icon(Icons.security_update_good_sharp),
-                          ),
-                          Container(
-                            padding: EdgeInsets.zero,
-                            child: Center(
-                              child: Text(
-                                "Account upgrade",
-                                style: GoogleFonts.ptSans(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF2B1330),
+                    child: GestureDetector(
+                      onTap: (() {
+                        Scaffold.of(context).closeEndDrawer();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return const TransactionHistory();
+                            },
+                            maintainState: false));
+                      }),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.zero,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.zero,
+                              child: const Icon(Icons.history),
+                            ),
+                            Container(
+                              padding: EdgeInsets.zero,
+                              child: Center(
+                                child: Text(
+                                  "Trasaction history",
+                                  style: GoogleFonts.ptSans(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xFF2B1330),
+                                  ),
                                 ),
                               ),
                             ),
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
                     top: 100,
+                    left: 10,
+                    child: GestureDetector(
+                      onTap: () {
+
+                        Scaffold.of(context).closeEndDrawer();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const AccountUpgradePage();
+                            },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.zero,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.zero,
+                              child:
+                                  const Icon(Icons.security_update_good_sharp),
+                            ),
+                            Container(
+                              padding: EdgeInsets.zero,
+                              child: Center(
+                                child: Text(
+                                  "Account upgrade",
+                                  style: GoogleFonts.ptSans(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xFF2B1330),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 140,
                     left: 10,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
@@ -156,7 +222,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ),
                   ),
                   Positioned(
-                    top: 140,
+                    top: 180,
                     left: 10,
                     child: Container(
                       width: MediaQuery.of(context).size.width,

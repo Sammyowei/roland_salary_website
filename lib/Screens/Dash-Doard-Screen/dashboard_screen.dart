@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
 
-
- final _userName = "SammyOwei.";
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
@@ -16,7 +13,6 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   double salaryAmount = 90;
 
- 
   @override
   void initState() {
     setState(() {
@@ -78,7 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: Colors.black.withOpacity(0.5)),
               ),
               Text(
-                _userName,
+                userName,
                 style: GoogleFonts.ptSans(
                     fontSize: 19,
                     fontWeight: FontWeight.bold,

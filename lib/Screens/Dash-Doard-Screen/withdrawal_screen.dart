@@ -17,7 +17,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
         elevation: 0,
         foregroundColor: const Color(0xff2b1330),
         backgroundColor: Colors.transparent,
-            title: Text(
+        title: Text(
           "Withdraw funds",
           style: GoogleFonts.ptSans(
             fontWeight: FontWeight.bold,
@@ -30,7 +30,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
         key: formKey,
         child: SafeArea(
           child: Column(
-            children:const  [],
+            children: const [],
           ),
         ),
       ),

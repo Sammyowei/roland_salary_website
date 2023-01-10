@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/add_fund.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/withdrawal_screen.dart';
@@ -143,69 +144,81 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(
                 height: 15,
               ),
-              Container(
-                color: Colors.transparent,
-                height: 35,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 3,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF2B1330),
-                        borderRadius: BorderRadius.circular(8.5),
-                        boxShadow: [
-                          BoxShadow(
-                              color: const Color(0xFF2B1330).withOpacity(0.5),
-                              offset: const Offset(-2, 2),
-                              blurRadius: 1)
-                        ],
-                      ),
-                      child: Center(
-                          child: Text(
-                        "Add funds",
-                        style: GoogleFonts.ptSans(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white.withOpacity(0.89),
-                        ),
-                      )),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const WithdrawalScreen();
-                            },
-                          ),
-                        );
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const FundWallet();
                       },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2.8,
+                    ),
+                  );
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  height: 35,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width / 3,
                         decoration: BoxDecoration(
                           color: const Color(0xFF2B1330),
                           borderRadius: BorderRadius.circular(8.5),
                           boxShadow: [
                             BoxShadow(
                                 color: const Color(0xFF2B1330).withOpacity(0.5),
-                                offset: const Offset(2, 2),
+                                offset: const Offset(-2, 2),
                                 blurRadius: 1)
                           ],
                         ),
                         child: Center(
-                          child: Text(
-                            "Withdraw funds",
-                            style: GoogleFonts.ptSans(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white.withOpacity(0.89),
+                            child: Text(
+                          "Add funds",
+                          style: GoogleFonts.ptSans(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white.withOpacity(0.89),
+                          ),
+                        )),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const WithdrawalScreen();
+                              },
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2.8,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2B1330),
+                            borderRadius: BorderRadius.circular(8.5),
+                            boxShadow: [
+                              BoxShadow(
+                                  color:
+                                      const Color(0xFF2B1330).withOpacity(0.5),
+                                  offset: const Offset(2, 2),
+                                  blurRadius: 1)
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Withdraw funds",
+                              style: GoogleFonts.ptSans(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white.withOpacity(0.89),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

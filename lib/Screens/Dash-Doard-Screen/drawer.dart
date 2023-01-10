@@ -255,7 +255,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                                     Uri.parse(supportLink);
                                                 try {
                                                   if (await canLaunchUrl(url)) {
-                                                    await launchUrl(url);
+                                                    await launchUrl(
+                                                      url,
+                                                      mode: LaunchMode
+                                                          .platformDefault,
+                                                    );
                                                   } else {
                                                     showDialog(
                                                       context: context,
@@ -309,7 +313,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                                                 try {
                                                   await launchUrlString(
-                                                      supportLink);
+                                                    supportLink,
+                                                    mode: LaunchMode
+                                                        .platformDefault,
+                                                  );
                                                 } catch (e) {
                                                   log(e.toString());
                                                 }
@@ -379,7 +386,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                           const email =
                                               'mailto:support@smartpayy.com?';
                                           try {
-                                            await launchUrlString(email);
+                                            await launchUrlString(
+                                              email,
+                                              mode: LaunchMode.platformDefault,
+                                            );
                                           } catch (e) {
                                             log(e.toString());
                                           }

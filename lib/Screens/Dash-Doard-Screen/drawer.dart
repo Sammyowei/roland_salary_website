@@ -256,6 +256,31 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                                 try {
                                                   if (await canLaunchUrl(url)) {
                                                     await launchUrl(url);
+                                                  } else {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return AlertDialog(
+                                                          content: Text(
+                                                            "please install telegram to contact support..",
+                                                            style: GoogleFonts
+                                                                .ptSans(
+                                                              color: const Color(
+                                                                  0xff2b1330),
+                                                            ),
+                                                          ),
+                                                          title: Text(
+                                                            "Install telegram",
+                                                            style: GoogleFonts.ptSans(
+                                                                color: const Color(
+                                                                    0xff2b1330),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
                                                   }
                                                 } catch (e) {
                                                   log(e.toString());

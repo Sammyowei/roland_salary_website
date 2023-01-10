@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/withdrawal_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -170,25 +171,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       )),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 2.8,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF2B1330),
-                        borderRadius: BorderRadius.circular(8.5),
-                        boxShadow: [
-                          BoxShadow(
-                              color: const Color(0xFF2B1330).withOpacity(0.5),
-                              offset: const Offset(2, 2),
-                              blurRadius: 1)
-                        ],
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Withdraw funds",
-                          style: GoogleFonts.ptSans(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white.withOpacity(0.89),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const WithdrawalScreen();
+                            },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 2.8,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF2B1330),
+                          borderRadius: BorderRadius.circular(8.5),
+                          boxShadow: [
+                            BoxShadow(
+                                color: const Color(0xFF2B1330).withOpacity(0.5),
+                                offset: const Offset(2, 2),
+                                blurRadius: 1)
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Withdraw funds",
+                            style: GoogleFonts.ptSans(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white.withOpacity(0.89),
+                            ),
                           ),
                         ),
                       ),

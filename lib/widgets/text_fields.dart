@@ -12,7 +12,6 @@ final userNameController = TextEditingController();
 final confirmPasswordController = TextEditingController();
 
 TextFormField emailField() {
-  final emailController = TextEditingController();
   return TextFormField(
     controller: emailController,
     validator: (value) {
@@ -38,7 +37,7 @@ TextFormField emailField() {
 }
 
 TextFormField userNameField() {
-  // final userNameController = TextEditingController();
+
   return TextFormField(
     controller: userNameController,
     validator: (value) {
@@ -63,7 +62,7 @@ TextFormField userNameField() {
 }
 
 TextFormField phoneNumberField() {
-  // final passwordController = TextEditingController();
+
   return TextFormField(
     controller: phoneNumberController,
     validator: (value) {
@@ -88,7 +87,7 @@ TextFormField phoneNumberField() {
 }
 
 TextFormField firstNameField() {
-  // final firstnameController = TextEditingController();
+
   return TextFormField(
     controller: firstNameController,
     validator: (value) {
@@ -113,7 +112,7 @@ TextFormField firstNameField() {
 }
 
 TextFormField lastNameField() {
-  // final lastNameController = TextEditingController();
+  
   return TextFormField(
     controller: lastNameController,
     validator: (value) {
@@ -138,7 +137,7 @@ TextFormField lastNameField() {
 }
 
 TextFormField passwordField() {
-  // final passwordController = TextEditingController();
+  
   return TextFormField(
     controller: passwordController,
     validator: (value) {
@@ -165,7 +164,6 @@ TextFormField passwordField() {
 }
 
 TextFormField countryField() {
-  // final countryController = TextEditingController();
   return TextFormField(
     validator: (value) {
       if (value!.isEmpty) {
@@ -190,7 +188,6 @@ TextFormField countryField() {
 }
 
 TextFormField confirmPasswordField() {
-  // final countryCode = TextEditingController();
   return TextFormField(
     controller: confirmPasswordController,
     obscureText: true,

@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
-import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
+import 'package:roland_salary_website/Screens/Login-Screen/auth_page.dart';
 import 'package:roland_salary_website/Screens/sign-up-screen/signup.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
 
@@ -17,6 +17,14 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,21 +130,13 @@ class _LoginPageState extends State<LoginPage> {
                   child: GestureDetector(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        try {
-                          signIn();
-
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text("Log in successful")));
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                            builder: (context) {
-                              return const DashboardScreen();
-                            },
-                          ), (route) => false);
-                        } catch (e) {
-                          log(e.toString());
-                        }
+                  setState(() {
+                    signIn().then((value) => showDialog(context: context, builder:(context) {
+                      return AlertDialog(
+                        content: Text("Login successful"),
+                      );
+                    },));
+                  });
                       }
                     },
                     child: Container(

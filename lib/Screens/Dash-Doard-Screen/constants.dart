@@ -7,7 +7,8 @@ int salaryAmount = 0;
 
 final formKey = GlobalKey<FormState>();
 
-Future<void> signIn() async {
-  await FirebaseAuth.instance
-      .signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+Future signIn() async {
+  await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim());
 }

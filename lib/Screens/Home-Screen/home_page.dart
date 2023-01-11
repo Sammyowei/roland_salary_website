@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:roland_salary_website/Screens/Login-Screen/login_page.dart';
-import 'package:roland_salary_website/Screens/Login-Screen/auth_page.dart';
 import 'package:roland_salary_website/Screens/sign-up-screen/signup.dart';
 import 'package:roland_salary_website/util/responsive_helper.dart';
 

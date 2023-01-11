@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
@@ -304,14 +308,19 @@ class _SignUpPageState extends State<SignUpPage> {
       child: GestureDetector(
         onTap: () {
           if (formKey.currentState!.validate()) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content:
-                    Text("Sign up successful, taking you to your dashboard!")));
-            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-              builder: (context) {
-                return const DashboardScreen();
-              },
-            ), (route) => false);
+            FirebaseAuth.instance
+                .createUserWithEmailAndPassword(
+                    email: emailController.text,
+                    password: passwordController.text)
+                .then((value) {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => const DashboardScreen(),
+                  ),
+                  (route) => false);
+            }).onError((error, stackTrace) {
+              log(error.toString());
+            });
           }
         },
         child: Container(

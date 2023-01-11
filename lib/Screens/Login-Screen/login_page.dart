@@ -19,13 +19,6 @@ class _LoginPageState extends State<LoginPage> {
   final _scrollController = ScrollController();
 
   @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -129,15 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: GestureDetector(
                     onTap: () async {
-                      if (formKey.currentState!.validate()) {
-                  setState(() {
-                    signIn().then((value) => showDialog(context: context, builder:(context) {
-                      return AlertDialog(
-                        content: Text("Login successful"),
-                      );
-                    },));
-                  });
-                      }
+                      if (formKey.currentState!.validate()) {}
                     },
                     child: Container(
                       height: 50,

@@ -146,6 +146,9 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             );
                           });
+
+                          emailController.clear();
+                          passwordController.clear();
                         } on FirebaseAuthException catch (error) {
                           Fluttertoast.showToast(
                               msg: "${error.message}",

@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/account_upgrade_page.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/transaction_screen.dart';
+import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -436,22 +437,24 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     right: 10,
                     left: 10,
                     child: GestureDetector(
-                      onTap: () {
-                        FirebaseAuth.instance.signOut().then((value) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return Container(
-                                height: 39,
-                                padding: EdgeInsets.zero,
-                                child:const  Center(
-                                  child:CircularProgressIndicator(
-                                    color: Color(0xff2b1330),
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+                      onTap: () async {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Color(0xff2b1330),
+                              ),
+                            );
+                          },
+                        );
+
+                        Future.delayed(const Duration(seconds: 3), () {
+                          FirebaseAuth.instance.signOut();
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ));
                         });
                       },
                       child: Container(

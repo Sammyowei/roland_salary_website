@@ -128,27 +128,75 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
                         try {
-                          await FirebaseAuth.instance
-                              .signInWithEmailAndPassword(
-                                  email: emailController.text.trim(),
-                                  password: passwordController.text.trim())
-                              .then((value) {
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                              builder: (context) {
-                                return const DashboardScreen();
-                              },
-                            ), (route) => false);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Log in sucessful"),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                          });
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 50,
+                                    right: 50,
+                                  ),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width/3.0,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10)
+                                    ),
+                                    padding: EdgeInsets.zero,
+                                    child: Center(
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          const CircularProgressIndicator(),
+                                          const SizedBox(
+                                            width:6,
+                                          ),
+                                          Text(
+                                            "Logging in..",
+                                            style: GoogleFonts.ptSans(
+                                              color: const Color(0xff2b1330),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
 
-                          emailController.clear();
-                          passwordController.clear();
+                          Future.delayed(
+                            const Duration(seconds: 0),
+                            () async {
+                              await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim())
+                                  .then((value) {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                  builder: (context) {
+                                    return const DashboardScreen();
+                                  },
+                                ), (route) => false);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Log in sucessful"),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+                              });
+
+                              emailController.clear();
+                              passwordController.clear();
+                            },
+                          );
                         } on FirebaseAuthException catch (error) {
                           Fluttertoast.showToast(
                               msg: "${error.message}",

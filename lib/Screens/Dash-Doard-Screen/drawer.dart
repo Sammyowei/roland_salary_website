@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -434,20 +435,40 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     bottom: 20,
                     right: 10,
                     left: 10,
-                    child: Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color(0xFF2B1330), width: 3),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                        child: Text(
-                          "Log out",
-                          style: GoogleFonts.ptSans(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0XFF2B1330),
+                    child: GestureDetector(
+                      onTap: () {
+                        FirebaseAuth.instance.signOut().then((value) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Container(
+                                height: 39,
+                                padding: EdgeInsets.zero,
+                                child:const  Center(
+                                  child:CircularProgressIndicator(
+                                    color: Color(0xff2b1330),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        });
+                      },
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: const Color(0xFF2B1330), width: 3),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                          child: Text(
+                            "Log out",
+                            style: GoogleFonts.ptSans(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0XFF2B1330),
+                            ),
                           ),
                         ),
                       ),

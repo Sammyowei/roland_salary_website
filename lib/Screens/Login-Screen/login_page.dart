@@ -1,8 +1,13 @@
 import 'dart:developer';
 
+import "dart:io";
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
 import 'package:roland_salary_website/Screens/sign-up-screen/signup.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
@@ -121,7 +126,32 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: GestureDetector(
                     onTap: () async {
-                      if (formKey.currentState!.validate()) {}
+                      if (formKey.currentState!.validate()) {
+                        try {
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text.trim())
+                              .then((value) {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                              builder: (context) {
+                                return const DashboardScreen();
+                              },
+                            ), (route) => false);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Log in sucessful"),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          });
+                        } on FirebaseAuthException catch (error) {
+                          Fluttertoast.showToast(
+                              msg: "${error.message}",
+                              gravity: ToastGravity.CENTER);
+                        }
+                      }
                     },
                     child: Container(
                       height: 50,

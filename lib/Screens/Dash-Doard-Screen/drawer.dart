@@ -448,9 +448,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             );
                           },
                         );
-
-                        Future.delayed(const Duration(seconds: 3), () {
-                          FirebaseAuth.instance.signOut();
+                        auth.currentUser!.uid;
+                        Future.delayed(const Duration(seconds: 1), () {
+                        auth.signOut();
                           Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
                             builder: (context) => const HomePage(),

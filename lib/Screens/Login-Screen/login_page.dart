@@ -202,11 +202,16 @@ class _LoginPageState extends State<LoginPage> {
 
                                 emailController.clear();
                                 passwordController.clear();
+                                log(auth.currentUser!.uid);
                               } on FirebaseAuthException catch (error) {
-                                Fluttertoast.showToast(
-                                    msg: "${error.message}",
-                                    gravity: ToastGravity.CENTER);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text("${error.message}"),
+                                  ),
+                                );
+                                log(error.toString());
                                 Navigator.of(context).pop();
+                                log(auth.currentUser!.uid);
                               }
                             },
                           );

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
@@ -307,26 +308,78 @@ class _SignUpPageState extends State<SignUpPage> {
   Center signupButtonToDashboard(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: () {
+        onTap: () async {
           if (formKey.currentState!.validate()) {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return Center(
+                  child: Container(
+                    height: 59,
+                    width: MediaQuery.of(context).size.width / 3,
+                    padding: EdgeInsets.zero,
+                    child: Row(children: [
+                      const CircularProgressIndicator(
+                        color: Color(0xff2b1330),
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      Text(
+                        "Creating account...",
+                        style: GoogleFonts.ptSans(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: const Color(0xff2b1330)),
+                      )
+                    ]),
+                  ),
+                );
+              },
+            );
+
             try {
-              FirebaseAuth.instance
-                  .createUserWithEmailAndPassword(
-                      email: emailController.text,
-                      password: passwordController.text)
-                  .then((value) {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
+              Future.delayed(
+                const Duration(seconds: 0),
+                () async {
+                  await auth
+                      .createUserWithEmailAndPassword(
+                    email: emailController.text,
+                    password: passwordController.text,
+                  )
+                      .then((_) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const DashboardScreen(),
-                    ),
-                    (route) => false);
-              }).onError((error, stackTrace) {
-                log(error.toString());
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text(error.toString())));
-              });
-            } catch (e) {
-              log(e.toString());
+                    ));
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          content: Text(
+                            "Your account has been created sucessfully..\nWelcome to smartpayy",
+                            
+                            style: GoogleFonts.ptSans(
+                              fontSize: 20,
+                              color: const Color(0xff2b1330),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  });
+                },
+              );
+            } on FirebaseAuthException catch (error) {
+             showDialog(context: context, builder:(context) {
+                return AlertDialog(
+                  content: Text("${error.message}"),
+                );
+              },).then((value){
+                Future.delayed( const Duration(seconds: 1),() {
+                  Navigator.of(context).pop();
+                },);
+              }); 
             }
           }
         },

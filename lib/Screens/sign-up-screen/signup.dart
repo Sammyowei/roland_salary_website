@@ -25,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
-        key: formKey,
+        key: signupFormKey,
         child: SafeArea(
           child: SingleChildScrollView(
             controller: _scrollController,
@@ -309,14 +309,18 @@ class _SignUpPageState extends State<SignUpPage> {
     return Center(
       child: GestureDetector(
         onTap: () async {
-          if (formKey.currentState!.validate()) {
+          if (signupFormKey.currentState!.validate()) {
             showDialog(
               context: context,
               builder: (context) {
                 return Center(
                   child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     height: 59,
-                    width: MediaQuery.of(context).size.width / 3,
+                    width: MediaQuery.of(context).size.width /1.5,
                     padding: EdgeInsets.zero,
                     child: Row(children: [
                       const CircularProgressIndicator(
@@ -348,6 +352,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     password: passwordController.text,
                   )
                       .then((_) {
+                    createUser();
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const DashboardScreen(),
                     ));
@@ -357,7 +362,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         return AlertDialog(
                           content: Text(
                             "Your account has been created sucessfully..\nWelcome to smartpayy",
-                            
                             style: GoogleFonts.ptSans(
                               fontSize: 20,
                               color: const Color(0xff2b1330),
@@ -367,19 +371,26 @@ class _SignUpPageState extends State<SignUpPage> {
                         );
                       },
                     );
+                    Navigator.of(context).pop();
                   });
                 },
               );
             } on FirebaseAuthException catch (error) {
-             showDialog(context: context, builder:(context) {
-                return AlertDialog(
-                  content: Text("${error.message}"),
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text("${error.message}"),
+                  );
+                },
+              ).then((value) {
+                Future.delayed(
+                  const Duration(seconds: 1),
+                  () {
+                    Navigator.of(context).pop();
+                  },
                 );
-              },).then((value){
-                Future.delayed( const Duration(seconds: 1),() {
-                  Navigator.of(context).pop();
-                },);
-              }); 
+              });
             }
           }
         },

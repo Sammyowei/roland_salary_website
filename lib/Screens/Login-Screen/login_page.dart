@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
-        key: formKey,
+        key: loginFormKey,
         child: SafeArea(
           child: SingleChildScrollView(
             controller: _scrollController,
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: GestureDetector(
                     onTap: () async {
-                      if (formKey.currentState!.validate()) {
+                      if (loginFormKey.currentState!.validate()) {
                         try {
                           showDialog(
                             context: context,

@@ -27,7 +27,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
         centerTitle: true,
       ),
       body: Form(
-        key: formKey,
+        key: loginFormKey,
         child: SafeArea(
           child: Column(
             children: const [],

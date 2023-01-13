@@ -6,7 +6,8 @@ import 'package:roland_salary_website/widgets/text_fields.dart';
 const userName = "Sammyowei";
 int salaryAmount = 0;
 
-final formKey = GlobalKey<FormState>();
+final loginFormKey = GlobalKey<FormState>();
+final signupFormKey = GlobalKey<FormState>();
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 

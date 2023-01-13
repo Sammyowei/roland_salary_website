@@ -11,6 +11,8 @@ final signupFormKey = GlobalKey<FormState>();
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
+
+
 Future createUser() async {
   final docUser =
       FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid);
@@ -29,6 +31,21 @@ Future createUser() async {
 
   await docUser.set(mapUserToJson);
 }
+
+
+final docUser =  FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid);
+
+ 
+
+
+
+
+
+
+Stream readUsersData() => FirebaseFirestore.instance
+    .collection("users")
+    .snapshots()
+    .map((snapshots) => snapshots.docs.map((doc) => doc.data()));
 
 class UserData {
   final String firstName;

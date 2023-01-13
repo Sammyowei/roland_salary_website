@@ -320,7 +320,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     height: 59,
-                    width: MediaQuery.of(context).size.width /1.5,
+                    width: MediaQuery.of(context).size.width / 1.5,
                     padding: EdgeInsets.zero,
                     child: Row(children: [
                       const CircularProgressIndicator(

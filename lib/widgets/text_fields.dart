@@ -43,7 +43,7 @@ TextFormField userNameField() {
     validator: (value) {
       if (value!.isEmpty) {
         return "please enter your user name";
-      } else if (!value.contains(RegExp(r"^[a-z0-9.!#$%&'*+/=?^_`{|}~-]"))) {
+      } else if (!value.contains(RegExp(r"^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]"))) {
         return "username must be lowercase ";
       }
       return null;

@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/add_fund.dart';
@@ -13,12 +16,43 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  String myUserName = "";
+  int mySalaryAmount = 0;
+
   @override
   void initState() {
-    setState(() {
-      salaryAmount;
-    });
+    salaryAmount;
     super.initState();
+  }
+
+  getUserSalary() async {
+    final firebaseUser = auth.currentUser;
+
+    if (firebaseUser != null) {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(firebaseUser.uid)
+          .get()
+          .then((value) {
+        mySalaryAmount = value["salary amount"];
+        log("$mySalaryAmount");
+      });
+    }
+  }
+
+  getUserName() async {
+    final firebaseUser = auth.currentUser;
+
+    if (firebaseUser != null) {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(firebaseUser.uid)
+          .get()
+          .then((value) {
+        myUserName = value["username"].toString();
+        log(myUserName);
+      });
+    }
   }
 
   @override
@@ -73,12 +107,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.black.withOpacity(0.5)),
               ),
-              Text(
-                userName,
-                style: GoogleFonts.ptSans(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black.withOpacity(0.7)),
+              Container(
+                child: FutureBuilder(
+                  future: getUserName(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState != ConnectionState.done) {
+                      return Text("loading");
+                    }
+                    return Text(
+                      myUserName,
+                      style: GoogleFonts.ptSans(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black.withOpacity(0.7)),
+                    );
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 0, right: 0, top: 10),
@@ -108,14 +152,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       top: 60,
                       left: 15,
                       right: 15,
-                      child: Text(
-                        "\$${salaryAmount.toInt().toStringAsFixed(2)}",
-                        style: GoogleFonts.ptSans(
-                          fontSize: 23.5,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white.withOpacity(0.85),
-                        ),
-                      ),
+                      child: FutureBuilder(
+                          future: getUserSalary(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState !=
+                                ConnectionState.done) {
+                              return Container(
+                                padding: const EdgeInsets.only(
+                                  right: 250,
+                                  left: 40
+                                ),
+                                width: 25,
+                                height: 25,
+                                child: const CircularProgressIndicator(
+                                    color: Colors.white),
+                              );
+                            }
+                            return Text(
+                              "\$${mySalaryAmount.toStringAsFixed(2)}",
+                              style: GoogleFonts.ptSans(
+                                fontSize: 23.5,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white.withOpacity(0.85),
+                              ),
+                            );
+                          }),
                     ),
                     Positioned(
                         top: 0,

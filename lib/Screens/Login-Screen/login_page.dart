@@ -21,6 +21,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _scrollController = ScrollController();
+  @override
+  void initState() {
+    emailController.clear();
+    passwordController.clear();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

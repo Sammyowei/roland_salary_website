@@ -73,6 +73,7 @@ TextFormField phoneNumberField() {
       }
       return null;
     },
+    keyboardType: TextInputType.phone,
     decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),

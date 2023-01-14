@@ -26,6 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
     selectedDate;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -400,9 +401,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   )
                       .then((_) {
                     createUser();
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const DashboardScreen(),
-                    ));
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => const DashboardScreen(),
+                        ),
+                        (route) => false);
+
                     showDialog(
                       context: context,
                       builder: (context) {

@@ -7,6 +7,7 @@ import 'package:roland_salary_website/Screens/Dash-Doard-Screen/add_fund.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/withdrawal_screen.dart';
+import 'package:roland_salary_website/widgets/text_fields.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -16,43 +17,11 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  String myUserName = "";
-  int mySalaryAmount = 0;
-
   @override
   void initState() {
     salaryAmount;
+    myUserName;
     super.initState();
-  }
-
-  getUserSalary() async {
-    final firebaseUser = auth.currentUser;
-
-    if (firebaseUser != null) {
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(firebaseUser.uid)
-          .get()
-          .then((value) {
-        mySalaryAmount = value["salary amount"];
-        log("$mySalaryAmount");
-      });
-    }
-  }
-
-  getUserName() async {
-    final firebaseUser = auth.currentUser;
-
-    if (firebaseUser != null) {
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(firebaseUser.uid)
-          .get()
-          .then((value) {
-        myUserName = value["username"].toString();
-        log(myUserName);
-      });
-    }
   }
 
   @override
@@ -158,12 +127,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             if (snapshot.connectionState !=
                                 ConnectionState.done) {
                               return Container(
-                                padding: const EdgeInsets.only(
-                                  right: 250,
-                                  left: 40
-                                ),
-                                width: 25,
-                                height: 25,
+                                padding:
+                                    const EdgeInsets.only(right: 290, left: 0),
+                                width: 50,
+                                height: 30,
                                 child: const CircularProgressIndicator(
                                     color: Colors.white),
                               );
@@ -287,5 +254,102 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
     );
+  }
+}
+
+String myUserName = "";
+int mySalaryAmount = 0;
+String myFirstName = '';
+String myCountryName = "";
+String myPhoneNumber = "";
+late final myDateOfBirth;
+
+getUserName() async {
+  final firebaseUser = auth.currentUser;
+
+  if (firebaseUser != null) {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .get()
+        .then((value) {
+      myUserName = value["username"].toString();
+      log(myUserName);
+    });
+  }
+}
+
+getUserSalary() async {
+  final firebaseUser = auth.currentUser;
+
+  if (firebaseUser != null) {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .get()
+        .then((value) {
+      mySalaryAmount = value["salary amount"];
+      log("$mySalaryAmount");
+    });
+  }
+}
+
+getFirstName() async {
+  final firebaseUser = auth.currentUser;
+
+  if (firebaseUser != null) {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .get()
+        .then((value) {
+      myFirstName = value["first name"];
+      log(myFirstName);
+    });
+  }
+}
+
+getPhoneNumber() async {
+  final firebaseUser = auth.currentUser;
+
+  if (firebaseUser != null) {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .get()
+        .then((value) {
+      myCountryName = value["country"];
+      log(myCountryName);
+    });
+  }
+}
+
+getCountryName() async {
+  final firebaseUser = auth.currentUser;
+
+  if (firebaseUser != null) {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .get()
+        .then((value) {
+      myPhoneNumber = value["phone number"].toString();
+      log(myPhoneNumber);
+    });
+  }
+}
+
+getDateOfBirth() async {
+  final firebaseUser = auth.currentUser;
+
+  if (firebaseUser != null) {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .get()
+        .then((value) {
+      myDateOfBirth = value["date of birth"].toString();
+      log(myDateOfBirth);
+    });
   }
 }

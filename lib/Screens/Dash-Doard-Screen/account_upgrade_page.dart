@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,7 +18,8 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const DrawerScreen(),
+      endDrawer: Container(
+          padding: EdgeInsets.zero, width: 250, child: const DrawerScreen()),
       backgroundColor: Colors.white.withOpacity(0.99),
       appBar: AppBar(
         foregroundColor: const Color(0xFF2B1330),
@@ -110,15 +112,22 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.transparent,
                       ),
-                      child: Center(
-                          child: Text(
-                        "Samuelson Owei",
-                        style: GoogleFonts.ptSans(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF2B1330).withOpacity(0.8),
-                        ),
-                      )),
+                      child: FutureBuilder(
+                        future: getFirstName(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState !=
+                              ConnectionState.done) {
+                            return Text("loading");
+                          }
+                          return Text(
+                            myFirstName,
+                            style: GoogleFonts.ptSans(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black.withOpacity(0.7)),
+                          );
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -152,15 +161,22 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.transparent,
                       ),
-                      child: Center(
-                          child: Text(
-                        "+2349131671187",
-                        style: GoogleFonts.ptSans(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF2B1330).withOpacity(0.8),
-                        ),
-                      )),
+                      child: FutureBuilder(
+                        future: getPhoneNumber(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState !=
+                              ConnectionState.done) {
+                            return Text("loading");
+                          }
+                          return Text(
+                            myPhoneNumber,
+                            style: GoogleFonts.ptSans(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black.withOpacity(0.7)),
+                          );
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -194,58 +210,21 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.transparent,
                       ),
-                      child: Center(
-                        child: Text(
-                          "Nigeria",
-                          style: GoogleFonts.ptSans(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xFF2B1330).withOpacity(0.89),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                height: 50,
-                padding: const EdgeInsets.only(left: 10, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Date of Birth:",
-                      style: GoogleFonts.ptSans(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xff2b1330).withOpacity(0.7),
-                      ),
-                    ),
-                    Container(
-                      height: 25,
-                      // width: MediaQuery.of(context).size.width / 6,
-                      padding: EdgeInsets.zero,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.transparent,
-                      ),
-                      child: Center(
-                        child: Text(
-                          "27-08-2004",
-                          style: GoogleFonts.ptSans(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xFF2B1330).withOpacity(0.8),
-                          ),
-                        ),
+                      child: FutureBuilder(
+                        future: getCountryName(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState !=
+                              ConnectionState.done) {
+                            return Text("loading");
+                          }
+                          return Text(
+                            myCountryName,
+                            style: GoogleFonts.ptSans(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black.withOpacity(0.7)),
+                          );
+                        },
                       ),
                     )
                   ],
@@ -296,12 +275,11 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
                                           const supportLink =
                                               "https://t.me/smartpayysupport/";
                                           final url = Uri.parse(supportLink);
-                                      if (await canLaunchUrl(url)) {
-                                       await launchUrl(url) ;
-                                      } else{
-                                        log("Cannot open link");
-                                      }
-                                      
+                                          if (await canLaunchUrl(url)) {
+                                            await launchUrl(url);
+                                          } else {
+                                            log("Cannot open link");
+                                          }
                                         } catch (e) {
                                           log(e.toString());
                                         }

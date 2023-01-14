@@ -22,6 +22,11 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _scrollController = ScrollController();
   @override
+  void initState() {
+    selectedDate;
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -136,6 +141,48 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
                   child: emailField(),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40, right: 30),
+                  child: Text(
+                    "Date of birth",
+                    style: GoogleFonts.ptSans(
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF2B1330),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 30,
+                    right: 30,
+                  ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onTap: () async {
+                      final picked = await showDatePicker(
+                        context: context,
+                        initialDate: selectedDate,
+                        firstDate: DateTime(1900, 8),
+                        lastDate: DateTime(2101),
+                      );
+                      if (picked != null) {
+                        setState(() {
+                          selectedDate = picked;
+                        });
+                      }
+                    },
+                    controller:
+                        TextEditingController(text: selectedDate.toString()),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,

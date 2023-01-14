@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+DateTime selectedDate = DateTime(2023, 1, 1);
+
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
 final firstNameController = TextEditingController();
@@ -37,7 +39,6 @@ TextFormField emailField() {
 }
 
 TextFormField userNameField() {
-
   return TextFormField(
     controller: userNameController,
     validator: (value) {
@@ -62,7 +63,6 @@ TextFormField userNameField() {
 }
 
 TextFormField phoneNumberField() {
-
   return TextFormField(
     controller: phoneNumberController,
     validator: (value) {
@@ -87,7 +87,6 @@ TextFormField phoneNumberField() {
 }
 
 TextFormField firstNameField() {
-
   return TextFormField(
     controller: firstNameController,
     validator: (value) {
@@ -112,7 +111,6 @@ TextFormField firstNameField() {
 }
 
 TextFormField lastNameField() {
-  
   return TextFormField(
     controller: lastNameController,
     validator: (value) {
@@ -137,7 +135,6 @@ TextFormField lastNameField() {
 }
 
 TextFormField passwordField() {
-  
   return TextFormField(
     controller: passwordController,
     validator: (value) {

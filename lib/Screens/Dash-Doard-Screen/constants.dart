@@ -11,13 +11,15 @@ final signupFormKey = GlobalKey<FormState>();
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
-
+final TextEditingController selectedDateController
+ = TextEditingController(text: selectedDate.toString());
 
 Future createUser() async {
   final docUser =
       FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid);
 
   final user = UserData(
+  
     userName: userNameController.text,
     firstName: firstNameController.text,
     lastName: lastNameController.text,
@@ -56,7 +58,9 @@ class UserData {
   final String emailAddress;
   int salaryAmount;
 
+
   UserData({
+    
     this.salaryAmount = 0,
     required this.userName,
     required this.firstName,
@@ -74,5 +78,6 @@ class UserData {
         "email address": emailAddress,
         "country": country,
         "salary amount": salaryAmount,
+        "date of birth": selectedDate,
       };
 }

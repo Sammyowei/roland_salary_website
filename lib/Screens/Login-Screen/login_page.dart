@@ -117,6 +117,13 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
+                        // onTap: () async {
+                        //  showDialog(context: context, builder: (context) {
+                        //    return AlertDialog(
+                        //     content: Text(""),
+                        //    );
+                        //  },);
+                        // },
                         child: Text(
                           "Forgot Password?",
                           style: GoogleFonts.ptSans(

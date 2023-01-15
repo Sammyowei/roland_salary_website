@@ -8,6 +8,7 @@ import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/withdrawal_screen.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -212,6 +213,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
+
+                          // launch("https://t.me/smartpayysupport");
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
@@ -260,6 +263,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 String myUserName = "";
 int mySalaryAmount = 0;
 String myFirstName = '';
+String myUSerLastName = "";
 String myCountryName = "";
 String myPhoneNumber = "";
 late final myDateOfBirth;
@@ -274,6 +278,7 @@ getUserName() async {
         .get()
         .then((value) {
       myUserName = value["username"].toString();
+
       log(myUserName);
     });
   }
@@ -304,6 +309,7 @@ getFirstName() async {
         .get()
         .then((value) {
       myFirstName = value["first name"];
+myUSerLastName = value["last name"];
       log(myFirstName);
     });
   }

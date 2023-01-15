@@ -120,7 +120,7 @@ class _AccountUpgradePageState extends State<AccountUpgradePage> {
                             return Text("loading");
                           }
                           return Text(
-                            myFirstName,
+                           "$myFirstName $myUSerLastName",
                             style: GoogleFonts.ptSans(
                                 fontSize: 19,
                                 fontWeight: FontWeight.bold,

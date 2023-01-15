@@ -11,15 +11,14 @@ final signupFormKey = GlobalKey<FormState>();
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
-final TextEditingController selectedDateController
- = TextEditingController(text: selectedDate.toString());
+final TextEditingController selectedDateController =
+    TextEditingController(text: selectedDate.toString());
 
 Future createUser() async {
   final docUser =
       FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid);
 
   final user = UserData(
-  
     userName: userNameController.text,
     firstName: firstNameController.text,
     lastName: lastNameController.text,
@@ -34,15 +33,8 @@ Future createUser() async {
   await docUser.set(mapUserToJson);
 }
 
-
-final docUser =  FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid);
-
- 
-
-
-
-
-
+final docUser =
+    FirebaseFirestore.instance.collection("users").doc(auth.currentUser!.uid);
 
 Stream readUsersData() => FirebaseFirestore.instance
     .collection("users")
@@ -58,9 +50,7 @@ class UserData {
   final String emailAddress;
   int salaryAmount;
 
-
   UserData({
-    
     this.salaryAmount = 0,
     required this.userName,
     required this.firstName,
@@ -80,4 +70,14 @@ class UserData {
         "salary amount": salaryAmount,
         "date of birth": selectedDate,
       };
+
+  static UserData fromJson(Map<String, dynamic> json) => UserData(
+      userName: json["username"],
+      firstName: json["first name"],
+      lastName: json["last name"],
+      phoneNumber: json["phone number"],
+      emailAddress: json["email address"],
+      country: json["country"],
+      salaryAmount: json["salary amount"]);
+    
 }

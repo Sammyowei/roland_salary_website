@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +8,6 @@ import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/transaction_screen.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -19,6 +17,18 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
+  late final _emailRecognizer = TapGestureRecognizer()..onTap = _takeToEmailTap;
+  late final _telegramRecogniser = TapGestureRecognizer()
+    ..onTap = _takeToTelegramTap;
+
+  void _takeToEmailTap() {
+    launch("mailto:support@smartpayy.com");
+  }
+
+  void _takeToTelegramTap() {
+    launch("https://t.me/smartpayysupport");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,107 +233,43 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                         color: const Color(0xff2b1330),
                                       ),
                                     ),
-                                    content: RichText(
-                                      text: TextSpan(
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                      launch("mailto:support@smartpayy.com?");
+                                        },
+                                        child: Text(
+                                          "Email",
+                                          style: GoogleFonts.ptSans(
+                                            color: const Color(0xff2b1330),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      TextButton(
+                                          onPressed: ()  {
+                                    launch("https://t.me/smartpayysupport");
+                                          },
+                                          child: Text(
+                                            "Telegram",
+                                            style: GoogleFonts.ptSans(
+                                              color: const Color(0xff2b1330),
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ))
+                                    ],
+                                    content: SelectableText.rich(
+                                      TextSpan(
                                         children: [
                                           TextSpan(
                                             text:
-                                                "You can contact smartpayy support if you experience any issues using our platform.             ",
+                                                "You can contact smartpayy support if you experience any issues using our platform.",
                                             style: GoogleFonts.ptSans(
                                               fontSize: 18,
                                               color: const Color(0xff2b1330),
                                             ),
                                           ),
-                                          TextSpan(
-                                            text: "Telegram: ",
-                                            style: GoogleFonts.ptSans(
-                                              fontSize: 18,
-                                              color: const Color(0xff2b1330),
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: "click here.\n ",
-                                            style: GoogleFonts.ptSans(
-                                              fontWeight: FontWeight.bold,
-                                              color: const Color(0xff2b1330)
-                                                  .withOpacity(0.88),
-                                              fontSize: 18,
-                                            ),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () async {
-                                                const supportLink =
-                                                    "https://t.me/smartpayysupport";
-                                                final url =
-                                                    Uri.parse(supportLink);
-                                                try {
-                                                  if (await canLaunchUrl(url)) {
-                                                    await launchUrl(
-                                                      url,
-                                                      mode: LaunchMode
-                                                          .platformDefault,
-                                                    );
-                                                  } else {
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return AlertDialog(
-                                                          content: Text(
-                                                            "please install telegram to contact support..",
-                                                            style: GoogleFonts
-                                                                .ptSans(
-                                                              color: const Color(
-                                                                  0xff2b1330),
-                                                            ),
-                                                          ),
-                                                          title: Text(
-                                                            "Install telegram",
-                                                            style: GoogleFonts.ptSans(
-                                                                color: const Color(
-                                                                    0xff2b1330),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                } catch (e) {
-                                                  log(e.toString());
-                                                }
-                                              },
-                                          ),
-                                          TextSpan(
-                                            text: "Send us an Email: ",
-                                            style: GoogleFonts.ptSans(
-                                              fontSize: 18,
-                                              color: const Color(0xff2b1330),
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: "support@smartpayy.com",
-                                            style: GoogleFonts.ptSans(
-                                              fontWeight: FontWeight.bold,
-                                              color: const Color(0xff2b1330)
-                                                  .withOpacity(0.88),
-                                              fontSize: 18,
-                                            ),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () async {
-                                                const supportLink =
-                                                    'mailto:support@smartpayy.com?subject=I%20experienced%20an%20issue%20using%20your%20platform';
 
-                                                try {
-                                                  await launchUrlString(
-                                                    supportLink,
-                                                    mode: LaunchMode
-                                                        .platformDefault,
-                                                  );
-                                                } catch (e) {
-                                                  log(e.toString());
-                                                }
-                                              },
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -366,37 +312,25 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              actions: [
+                                TextButton(onPressed: () {
+                                  launch("mailto:support@smartpayy.com?");
+                                }, child: Text("Email", style: GoogleFonts.ptSans(
+                                  color: const Color(0xff2b1330),
+                                  fontWeight: FontWeight.bold
+                                ),))
+                              ],
                               content: RichText(
                                 text: TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: "email support: ",
+                                      text: "You can contact support through email for any issues you experience using our platform, but for account upgrade contact support on telegram..",
                                       style: GoogleFonts.ptSans(
                                         color: const Color(0xff2b1330),
                                         fontSize: 18,
                                       ),
                                     ),
-                                    TextSpan(
-                                      text: "support@smartpayy.com\n",
-                                      style: GoogleFonts.ptSans(
-                                        color: const Color(0xff2b1330),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () async {
-                                          const email =
-                                              'mailto:support@smartpayy.com?';
-                                          try {
-                                            await launchUrlString(
-                                              email,
-                                              mode: LaunchMode.platformDefault,
-                                            );
-                                          } catch (e) {
-                                            log(e.toString());
-                                          }
-                                        },
-                                    ),
+                                    
                                   ],
                                 ),
                               ),
@@ -450,7 +384,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         );
                         auth.currentUser!.uid;
                         Future.delayed(const Duration(seconds: 1), () {
-                        auth.signOut();
+                          auth.signOut();
                           Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
                             builder: (context) => const HomePage(),

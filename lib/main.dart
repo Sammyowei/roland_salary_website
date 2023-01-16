@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'smartpayy.com',
+      title: 'Smartpayy Home',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:const  HomePage(),
+      home:const AdminPannel(),
     );
   }
 }

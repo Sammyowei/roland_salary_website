@@ -1,4 +1,5 @@
 import 'package:roland_salary_website/Admin-Panel/home_screen.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
 
 import "firebase_options.dart";
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:const AdminPannel(),
+      home:const DashboardScreen(),
     );
   }
 }

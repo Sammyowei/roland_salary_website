@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,10 @@ import 'package:roland_salary_website/Screens/Dash-Doard-Screen/drawer.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/withdrawal_screen.dart';
 import 'package:roland_salary_website/widgets/text_fields.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+
+
+
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -22,6 +27,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     salaryAmount;
     myUserName;
+    myButtons;
     super.initState();
   }
 
@@ -213,7 +219,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-
                           // launch("https://t.me/smartpayysupport");
                           Navigator.of(context).push(
                             MaterialPageRoute(
@@ -252,6 +257,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: myButtons),
             ],
           ),
         ),
@@ -309,7 +320,7 @@ getFirstName() async {
         .get()
         .then((value) {
       myFirstName = value["first name"];
-myUSerLastName = value["last name"];
+      myUSerLastName = value["last name"];
       log(myFirstName);
     });
   }
@@ -359,3 +370,43 @@ getDateOfBirth() async {
     });
   }
 }
+
+List<Widget> myButtons = [
+  Container(
+    height: height.toDouble(),
+    width: width.toDouble(),
+    decoration: decoration,
+    child: const Center(
+      child: Icon(Icons.electrical_services_rounded),
+    ),
+  ),
+  Container(
+    height: height.toDouble(),
+    width: width.toDouble(),
+    decoration: decoration,
+    child: const Center(
+      child:Icon(Icons.abc),
+    ),
+  ),
+  Container(
+    height: height.toDouble(),
+    width: width.toDouble(),
+    decoration: decoration,
+    child: const Center(
+      child: Icon(Icons.electric_bolt_rounded),
+    ),
+  ),
+];
+final itemColor = const Color(0xff2b1330).withOpacity(0.5);
+const height = 45;
+const width = 45;
+
+final decoration = BoxDecoration(
+  border: Border.all(
+    color: const Color(0xff2b1330),
+    width: 1.3,
+  ),
+  color: itemColor,
+  borderRadius: BorderRadius.circular(100),
+ 
+);

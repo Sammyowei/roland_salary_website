@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/account_upgrade_page.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/constants.dart';
+import 'package:roland_salary_website/Screens/Dash-Doard-Screen/dashboard_screen.dart';
 import 'package:roland_salary_website/Screens/Dash-Doard-Screen/transaction_screen.dart';
 import 'package:roland_salary_website/Screens/Home-Screen/home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -69,7 +70,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       padding: EdgeInsets.zero,
                       child: Center(
                         child: Text(
-                          userName,
+                          myUserName,
                           style: GoogleFonts.ptSans(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
